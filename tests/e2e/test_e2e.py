@@ -72,3 +72,72 @@ def test_calculator_divide_by_zero(page, fastapi_server):
     # "Error: Cannot divide by zero!". This verifies that the application handles division by zero
     # gracefully and displays the correct error message to the user.
     assert page.inner_text('#result') == 'Error: Cannot divide by zero!'
+
+
+@pytest.mark.e2e
+def test_calculator_subtract(page, fastapi_server):
+    """
+    Test the addition functionality of the calculator.
+
+    This test simulates a user performing an addition operation using the calculator
+    on the frontend. It fills in two numbers, clicks the "Add" button, and verifies
+    that the result displayed is correct.
+    """
+    # Navigate the browser to the homepage URL of the FastAPI application.
+    page.goto('http://localhost:8000')
+    
+    # Fill in the first number input field (with id 'a') with the value '10'.
+    page.fill('#a', '10')
+    
+    # Fill in the second number input field (with id 'b') with the value '5'.
+    page.fill('#b', '5')
+    
+    page.click('button:text("Subtract")')
+    
+    expect(page.locator('#result')).to_have_text('Calculation Result: 5')
+
+@pytest.mark.e2e
+def test_calculator_multiply(page, fastapi_server):
+    """
+    Test the addition functionality of the calculator.
+
+    This test simulates a user performing an addition operation using the calculator
+    on the frontend. It fills in two numbers, clicks the "Add" button, and verifies
+    that the result displayed is correct.
+    """
+    # Navigate the browser to the homepage URL of the FastAPI application.
+    page.goto('http://localhost:8000')
+    
+    # Fill in the first number input field (with id 'a') with the value '10'.
+    page.fill('#a', '10')
+    
+    # Fill in the second number input field (with id 'b') with the value '5'.
+    page.fill('#b', '5')
+    
+    page.click('button:text("Multiply")')
+    
+
+    expect(page.locator('#result')).to_have_text('Calculation Result: 50')
+
+@pytest.mark.e2e
+def test_calculator_divide(page, fastapi_server):
+    """
+    Test the addition functionality of the calculator.
+
+    This test simulates a user performing an addition operation using the calculator
+    on the frontend. It fills in two numbers, clicks the "Add" button, and verifies
+    that the result displayed is correct.
+    """
+    # Navigate the browser to the homepage URL of the FastAPI application.
+    page.goto('http://localhost:8000')
+    
+    # Fill in the first number input field (with id 'a') with the value '10'.
+    page.fill('#a', '10')
+    
+    # Fill in the second number input field (with id 'b') with the value '5'.
+    page.fill('#b', '5')
+    
+    page.click('button:text("Divide")')
+    
+
+    expect(page.locator('#result')).to_have_text('Calculation Result: 2')
